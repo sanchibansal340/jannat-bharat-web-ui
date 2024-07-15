@@ -24,11 +24,11 @@ const InfoxBoxCard=({infoIcon,infoHeading,infoData})=>{
                 </Box>
             </Tooltip>
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-                <Typography variant="body2" color="textSecondary" sx={{ lineHeight: 1 }}>
+                <Typography variant="body2" color="textSecondary" sx={{ lineHeight: 1, fontFamily:"inherit", fontWeight:"500",fontSize:"14px" }}>
                     {infoHeading}
                 </Typography>
-                <Typography variant="h6" sx={{ lineHeight: 1 }}>
-                    {infoData}
+                <Typography variant="body2" sx={{ lineHeight: 1.5, fontFamily:"ui-rounded",fontSize:"18px",fontWeight:"700",color:"#1D4D54" }}>
+                    <b>{infoData}</b>
                 </Typography>
             </Box>
         </Box>
