@@ -1,17 +1,16 @@
 import * as React from 'react';
-import {styled} from '@mui/material/styles';
+import {css, styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import DayWiseItineraryDataTab from "../components/TourDetail/itineraryTab/DayWiseItineraryDataTab";
+import ItineraryDataTab from "../components/TourDetail/itineraryTab/ItineraryDataTab";
 import InfoBox from "../components/TourDetail/InfoBox";
 import ItineraryTab from "../components/TourDetail/itineraryTab/ItineraryTab";
-import Overview from "../components/TourDetail/itineraryTab/OverviewDataTab";
-import PolicyDataTab from "../components/TourDetail/itineraryTab/PolicyDataTab";
 import PriceDataTab from "../components/TourDetail/itineraryTab/PriceDataTab";
-import OtherInfoDataTab from "../components/TourDetail/itineraryTab/OtherInfoDataTab";
+import MustKnowDataTab from "../components/TourDetail/itineraryTab/MustKnowDataTab";
 import InquireForm from "../components/TourDetail/InquireForm";
 import {Typography} from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,6 +22,9 @@ const Item = styled(Paper)(({theme}) => ({
 
 
 const TourDetail = () => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
     const infoData = {
         duration: "6 days",
         startingDate: "7-7-24",
@@ -30,13 +32,10 @@ const TourDetail = () => {
         groupType: "All Girls"
     }
     const detailedItinerary = {
+
         0: {
-            label: "OVERVIEW",
-            component: <Overview/>
-        },
-        1: {
             label: "ITINERARY",
-            component: <DayWiseItineraryDataTab/>
+            component: <ItineraryDataTab/>
         },
         2: {
             label: "PRICE",
@@ -45,55 +44,61 @@ const TourDetail = () => {
         },
         3: {
             label: "Must Know",
-            component: <OtherInfoDataTab/>
-        },
-        4: {
-            label: "POLICIES",
-            component: <PolicyDataTab/>
+            component: <MustKnowDataTab/>
         }
     }
+
     return (
-        <Box sx={{flexGrow: 1, marginLeft: "7%", marginRight: "7%", padding: "5%"}}>
-            <Grid item xs={6} md={8} lg={8}>
+        <Box sx={{flexGrow: 1, marginLeft: "7%", marginRight: "7%", padding: "5%",
+            '@media (max-width: 600px)': {
+                marginLeft: "0.5%", marginRight: "0.5%"
+            },
+        }}>
+            <Grid item xs={12} md={8} lg={8}>
                 <Box sx={{marginBottom: "4%"}}>
                     <Typography variant={"h4"} sx={{
                         fontSize: "36px",
                         lineHeight: "48px",
                         fontFamily: "fangsong",
                         fontWeight: "800",
-                        color: "#1D4D54"
+                        color: "#1D4D54",
+                        '@media (max-width: 600px)': {
+                            fontSize:"32px"
+                        }
                     }}>
                         Trip To: TIRTHAN VALLEY
                     </Typography>
                 </Box>
-
             </Grid>
             <Grid item xs={6} md={8} lg={8}>
                 <Box sx={{marginBottom: "4%"}}>
                     <img
                         src={"https://www.fabhotels.com/blog/wp-content/uploads/2020/05/road-trip-hacks-tips-600.jpg"}
-                        width={"100%"} height="550px"/>
+                        style={{
+                            width: "100%",
+                            height: isSmallScreen ? "200px"  : '550px',
+                        }}  />
                 </Box>
 
             </Grid>
-            <Grid container spacing={6}>
-                {/*leftside*/}
-                <Grid item xs={6} md={8} lg={8}>
-                    <Grid item>
-                        <InfoBox infoData={infoData}/>
-                    </Grid>
 
-                    <Grid item>
+
+            {/*infoBox, tab and inquiryform*/}
+            <Box sx={{
+                '@media (max-width: 600px)': {
+                    margin:"0px"
+                },
+            }}>
+                <Grid container spacing={6}>
+                    <Grid item xs={12} md={8}>
+                        <InfoBox infoData={infoData} />
                         <ItineraryTab details={detailedItinerary}/>
                     </Grid>
+                    <Grid item xs={12} md={4}>
+                        <InquireForm />
+                    </Grid>
                 </Grid>
-
-                {/*rightside*/}
-                <Grid item lg={4}>
-                    <InquireForm/>
-                </Grid>
-
-            </Grid>
+            </Box>
 
 
         </Box>

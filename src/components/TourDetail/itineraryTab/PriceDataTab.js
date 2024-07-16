@@ -86,7 +86,7 @@ const priceDetails = {
         heading: "Delhi",
         headingIcon: <TourIcon/>,
         details: <LocationDetails
-            pickupPoint={"Kashmere gate metro station gate1dfghjklewsrdtfyguiop[sdfghjkljhgftrewrtyuiouytdrsefdghjksdfghjkljhgftrewrtyuiouytdrsefdghjk"}
+            pickupPoint={"Kashmere gate metro station gate1"}
             pickupTime={"7:00"} departureTime={"7:30"}/>
     }
 }

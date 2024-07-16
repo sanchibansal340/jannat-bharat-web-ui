@@ -5,11 +5,7 @@ import Box from '@mui/material/Box';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 
-const tabData={
-    one:{detail:"some data"},
-    two:{detail:"some data"},
-    three:{detail:"some data"}
-}
+
 const ItineraryTab=({details})=> {
     const [value, setValue] = React.useState(0);
 
@@ -40,7 +36,14 @@ const ItineraryTab=({details})=> {
                 {Object.keys(details).map((index,_)=>{
                     const itineraryDetails=details[index]
                     return (
-                        <TabPanel value={_}  >
+                        <TabPanel value={_}  sx={{
+
+                            '@media (max-width: 600px)': {
+
+                                padding: '0px',
+                                marginTop:"5%"
+                            },
+                        }} >
                             {itineraryDetails.component}
                         </TabPanel>
                     )

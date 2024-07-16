@@ -33,7 +33,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function CustomizedTables({tableHeading,tableRow}) {
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{ minWidth: 700, '@media (max-width: 600px)': {
+                    minWidth: 200
+                }, }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                     {Object.keys(tableHeading).map((index)=>{

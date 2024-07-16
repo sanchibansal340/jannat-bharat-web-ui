@@ -9,12 +9,13 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 const InquiryForm = () => {
-    const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <Box sx={{ mt: 2 }}>
-            <Grid container spacing={2} justifyContent={isSmallScreen ? 'center' : 'flex-end'}>
+        <Box sx={{ mt: 2,
+            '@media (max-width: 600px)': {
+                marginTop:"0%"
+            },}}>
+            <Grid container spacing={2} justifyContent={"center"}>
                 <Grid item xs={12} md={6} lg={12}>
                     <Paper elevation={3} sx={{ p: 3 }}>
                         <Box sx={{backgroundColor:"#f2f4f6"}}>
