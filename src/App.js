@@ -1,9 +1,9 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './App.css'
 import { HomePage } from './pages/utils'
-import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TourDetailsContainer from './containers/TourDetailsContainer';
+
 
 const theme = createTheme({
     palette: {
@@ -46,28 +46,34 @@ const theme = createTheme({
 })
 
 function App() {
-  return (
-    <>
-      <Router>
-        <div>
-          <Routes>
-            {/* Define routes here */}
-            <Route
-              path="/tour"
-              element={<TourDetailsContainer />} // Render the container for this route
-            />
-            {/* You can add more routes here */}
-            <Route
-              path="/"
-              exact
-              render={() => <div>Home Page</div>} // Example of another route
-            />
-          </Routes>
-        </div>
-      </Router>
-    </>
+    return (
+        <ThemeProvider theme={theme}>
+            <div className="App">
+            <Router>
+                    <div>
+                      <Routes>
+                      <Route
+                      path="/"
+                      element={  <HomePage />}
+                       />
+                        {/* Define routes here */}
+                        <Route
+                          path="/tour"
+                          element={<TourDetailsContainer />} // Render the container for this route
+                        />
+                        {/* You can add more routes here */}
+                        <Route
+                          path="/"
+                          exact
+                          render={() => <div>Home Page</div>} // Example of another route
+                        />
+                      </Routes>
+                    </div>
+                  </Router>
 
-  );
+            </div>
+        </ThemeProvider>
+    )
 }
 
 export default App
