@@ -1,14 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-import TourDetail from "./pages/tourDetail";
-import Box from "@mui/material/Box";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import TourDetailsContainer from './containers/TourDetailsContainer';
 
 function App() {
   return (
-      <>
-        <Box sx={{height:"100px"}} />
-        <TourDetail />
-      </>
+    <>
+      <Router>
+        <div>
+          <Routes>
+            {/* Define routes here */}
+            <Route
+              path="/tour"
+              element={<TourDetailsContainer />} // Render the container for this route
+            />
+            {/* You can add more routes here */}
+            <Route
+              path="/"
+              exact
+              render={() => <div>Home Page</div>} // Example of another route
+            />
+          </Routes>
+        </div>
+      </Router>
+    </>
 
   );
 }

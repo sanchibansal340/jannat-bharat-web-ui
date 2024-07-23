@@ -11,6 +11,7 @@ import MustKnowDataTab from "../components/TourDetail/itineraryTab/MustKnowDataT
 import InquireForm from "../components/TourDetail/InquireForm";
 import {Typography} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import {useEffect} from "react";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -21,7 +22,17 @@ const Item = styled(Paper)(({theme}) => ({
 }));
 
 
-const TourDetail = () => {
+
+const TourDetail = ({tripData,getTripDetail}) => {
+    useEffect(() => {
+        if (tripData===null){
+            getTripDetail(1)
+        }
+
+    }, []);
+
+    console.log("----tripData-----",tripData)
+
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
