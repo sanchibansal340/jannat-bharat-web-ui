@@ -1,6 +1,6 @@
 import CustomAccordionTab from "../CustomAccordionTab";
 import React from "react";
-import {Tooltip, Typography} from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import CustomizedTable from "../../CustomizedTable";
 import Box from "@mui/material/Box";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -21,36 +21,47 @@ const tableDataHeading = {
     1: "Price"
 }
 
-const tableDataRows = {
-    0: {
-        "sharingType": "Quad Sharing",
-        "price": "6500"
-    },
-    1: {
-        "sharingType": "Triple Sharing",
-        "price": "6500"
-    },
-    2: {
-        "sharingType": "Double Sharing",
-        "price": "7000"
+const getTableRowData = ( pickupDetails ) => {
+    if (pickupDetails.per_person_price !== null) {
+        return {
+            0: {
+                "sharingType": "PerPerson",
+                "price": pickupDetails.per_person_price
+            }
+        }
+    }
+    return {
+        0: {
+            "sharingType": "Quad Sharing",
+            "price": pickupDetails.quad_sharing_price
+        },
+        1: {
+            "sharingType": "Triple Sharing",
+            "price": pickupDetails.triple_sharing_price
+        },
+        2: {
+            "sharingType": "Double Sharing",
+            "price": pickupDetails.double_sharing_price
+        }
     }
 }
 
-const DataPoints = ({title, infoIcon, value}) => {
+
+const DataPoints = ({ title, infoIcon, value }) => {
     return (
         <div>
-            <Box display="flex" alignItems="center" gap={1} sx={{fontSize: "15px"}}>
+            <Box display="flex" alignItems="center" gap={1} sx={{ fontSize: "15px" }}>
                 <Tooltip title={title}>
                     <Box>
                         {infoIcon}
                     </Box>
                 </Tooltip>
                 <Box display="flex" flexDirection="column" alignItems="flex-start">
-                    <Typography variant="body2" color="textSecondary" sx={{lineHeight: 1}}>
+                    <Typography variant="body2" color="textSecondary" sx={{ lineHeight: 1 }}>
                         {title}
                     </Typography>
 
-                    <Typography variant="body" sx={{lineHeight: 1.5,overflowWrap:"anywhere"}}>
+                    <Typography variant="body" sx={{ lineHeight: 1.5, overflowWrap: "anywhere" }}>
                         <b>{value}</b>
                     </Typography>
                 </Box>
@@ -58,49 +69,47 @@ const DataPoints = ({title, infoIcon, value}) => {
         </div>
     )
 }
-const LocationDetails = ({pickupPoint, pickupTime, departureTime}) => {
+const LocationDetails = ({ pickupPoint, pickupTime, departureTime, tableDataRows }) => {
     return (
-        <div elevation={3} sx={{p: 3}}>
-            <DataPoints title={"Pickup Point"} value={pickupPoint} infoIcon={<LocationOnIcon/>}/>
-<br />
+        <div elevation={3} sx={{ p: 3 }}>
+            <DataPoints title={"Pickup Point"} value={pickupPoint} infoIcon={<LocationOnIcon />} />
+            <br />
             <Box display="flex" alignItems="center" gap={10} >
-                    <DataPoints title={"Pickup Time"} value={pickupTime} infoIcon={<AccessTimeFilledIcon />}/>
-                    <DataPoints title={"Departure Time"} value={departureTime} infoIcon={<DepartureBoardIcon />} />
-                </Box>
+                <DataPoints title={"Pickup Time"} value={pickupTime} infoIcon={<AccessTimeFilledIcon />} />
+                <DataPoints title={"Departure Time"} value={departureTime} infoIcon={<DepartureBoardIcon />} />
+            </Box>
 
-            <br/>
-            <br/>
-            <CustomizedTable tableHeading={tableDataHeading} tableRow={tableDataRows}/>
+            <br />
+            <br />
+            <CustomizedTable tableHeading={tableDataHeading} tableRow={tableDataRows} />
         </div>
     )
 }
 
 
-const priceDetails = {
-    0: {
-        heading: "Chandigarh",
-        headingIcon: <TourIcon/>,
-        details: <LocationDetails pickupPoint={"Chandigarh"} pickupTime={"7:00"} departureTime={"7:30"}/>
-    },
-    1: {
-        heading: "Delhi",
-        headingIcon: <TourIcon/>,
-        details: <LocationDetails
-            pickupPoint={"Kashmere gate metro station gate1"}
-            pickupTime={"7:00"} departureTime={"7:30"}/>
-    }
-}
-
-const PriceDataTab = () => {
+const PriceDataTab = ({ pickupData }) => {
     return (
         <>
-            {Object.keys(priceDetails).map((data, index) => {
-                const locationData = priceDetails[data]
+            {pickupData.map((data, index) => {
+
+                const headingIcon = <TourIcon />
+                const tableDataRows = getTableRowData(data)
+                const details = <LocationDetails
+                    pickupPoint={data.pickup_location}
+                    pickupTime={data.arrival_timing}
+                    departureTime={data.departure_timing}
+                    tableDataRows={tableDataRows}
+                />
+
 
                 return (
-                    <div sx={{marginBottom: "10%"}}>
-                        <CustomAccordionTab heading={locationData.heading} details={locationData.details}
-                                            headingIcon={locationData.headingIcon} index={index}/>
+                    <div sx={{ marginBottom: "10%" }}>
+                        <CustomAccordionTab heading={data.pickup_point}
+                            pickupDetail={details}
+
+                            headingIcon={headingIcon}
+                            index={index}
+                        />
                     </div>
                 )
             })}

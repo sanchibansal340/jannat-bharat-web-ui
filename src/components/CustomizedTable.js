@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function CustomizedTables({tableHeading,tableRow}) {
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700, '@media (max-width: 600px)': {
+            <Table sx={{ minWidth: "-webkit-fill-available", '@media (max-width: 200px)': {
                     minWidth: 200
                 }, }} aria-label="customized table">
                 <TableHead>
