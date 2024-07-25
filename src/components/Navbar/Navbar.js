@@ -12,7 +12,11 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 
-const pages = ['Upcoming Trips', 'Reviews', 'Contact Us']
+const pages = [
+    { text: 'Upcoming Trips', id: 'upcoming_trips' },
+    { text: 'Reviews', id: 'reviews' },
+    { text: 'Contact Us', id: 'contact_us' },
+]
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = useState(null)
@@ -26,25 +30,24 @@ function Navbar() {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar position="sticky" sx={{ backgroundColor: 'primary.main' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            fontWeight: 600,
+                            wordSpacing: '0.2em',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Jannat Bharat
                     </Typography>
 
                     <Box
@@ -83,11 +86,13 @@ function Navbar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem
-                                    key={page}
+                                    component="a"
+                                    href={`#${page['id']}`}
+                                    key={page['text']}
                                     onClick={handleCloseNavMenu}
                                 >
                                     <Typography textAlign="center">
-                                        {page}
+                                        {page['text']}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -98,19 +103,18 @@ function Navbar() {
                         variant="h5"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
+                            fontWeight: 600,
+                            wordSpacing: '0.2em',
                             flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Jannat Bharat
                     </Typography>
                     <Box
                         sx={{
@@ -124,11 +128,17 @@ function Navbar() {
                     >
                         {pages.map((page) => (
                             <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                compnent="a"
+                                href={`#${page['id']}`}
+                                key={page['text']}
+                                sx={{
+                                    my: 2,
+                                    color: 'white',
+                                    display: 'block',
+                                    textTransform: 'capitalize',
+                                }}
                             >
-                                {page}
+                                {page['text']}
                             </Button>
                         ))}
                     </Box>
