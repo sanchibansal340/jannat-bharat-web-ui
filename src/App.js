@@ -62,11 +62,6 @@ function App() {
                           element={<TourDetailsContainer />} // Render the container for this route
                         />
                         {/* You can add more routes here */}
-                        <Route
-                          path="/"
-                          exact
-                          render={() => <div>Home Page</div>} // Example of another route
-                        />
                       </Routes>
                     </div>
                   </Router>
