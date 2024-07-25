@@ -11,23 +11,30 @@ import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 const InquiryForm = () => {
 
     return (
-        <Box sx={{ mt: 2,
+        <Box sx={{
+            mt: 2,
             '@media (max-width: 600px)': {
-                marginTop:"0%"
-            },}}>
+                marginTop: "0%"
+            },
+        }}>
             <Grid container spacing={2} justifyContent={"center"}>
                 <Grid item xs={12} md={6} lg={12}>
                     <Paper elevation={3} sx={{ p: 3 }}>
-                        <Box sx={{backgroundColor:"#f2f4f6"}}>
+                        <Box >
 
-                            <Typography variant="h5" component="h1" gutterBottom sx={{color:"#1D4D54",padding:"20px",fontFamily:"monospace",fontWeight:"700",align:"center"}}>
+                            <Typography variant="h3"
+                                sx={{
+                                    fontStyle: 'italic',
+                                    marginBottom: '1rem',
+                                }}
+                                color="primary.main">
 
                                 <DynamicFormIcon /> Inquiry Form
                             </Typography>
                         </Box>
 
                         <form noValidate autoComplete="off">
-                            <Box sx={{ mb: 2 ,marginTop:"10px"}}>
+                            <Box sx={{ mb: 2, marginTop: "10px" }}>
                                 <TextField
                                     fullWidth
                                     label="Name"
@@ -70,7 +77,7 @@ const InquiryForm = () => {
                                     required
                                 />
                             </Box>
-                            <Button variant="contained" color="primary" type="submit" fullWidth sx={{backgroundColor:"#1D4D54",fontWeight:"700",lineHeight:"26px", fontSize:"16px",height:"50px"}}>
+                            <Button variant="contained" color="primary" type="submit" fullWidth sx={{ backgroundColor: "#1D4D54", fontWeight: "700", lineHeight: "26px", fontSize: "16px", height: "50px" }}>
                                 Submit
                             </Button>
                         </form>

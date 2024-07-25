@@ -57,7 +57,7 @@ const DataPoints = ({ title, infoIcon, value }) => {
                     </Box>
                 </Tooltip>
                 <Box display="flex" flexDirection="column" alignItems="flex-start">
-                    <Typography variant="body2" color="textSecondary" sx={{ lineHeight: 1 }}>
+                    <Typography gutterBottom variant="body1" color="primary.main">
                         {title}
                     </Typography>
 
@@ -92,7 +92,7 @@ const PriceDataTab = ({ pickupData }) => {
         <>
             {pickupData.map((data, index) => {
 
-                const headingIcon = <TourIcon />
+                const headingIcon = <TourIcon sx={{ color:"primary.main"}} />
                 const tableDataRows = getTableRowData(data)
                 const details = <LocationDetails
                     pickupPoint={data.pickup_location}

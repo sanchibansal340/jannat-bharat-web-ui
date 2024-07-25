@@ -28,13 +28,13 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-const headingIcons={
-    "inclusions":<AllInclusiveIcon sx={{color:"#1D4D54"}} />,
-    "exclusions":<ErrorOutlineIcon sx={{color:"#1D4D54"}} />,
-    "thingsToCarry":<StarsIcon sx={{color:"#1D4D54"}} />,
-    "cancellation_policy":<CancelPresentationIcon sx={{color:"#1D4D54"}} />,
-    "terms_and_conditions":<TextSnippetIcon sx={{color:"#1D4D54"}}/>,
-    "why_us":<QuestionMarkIcon sx={{color:"#1D4D54"}}/>,
+const headingIcons = {
+    "inclusions": <AllInclusiveIcon sx={{ color: "#1D4D54" }} />,
+    "exclusions": <ErrorOutlineIcon sx={{ color: "#1D4D54" }} />,
+    "thingsToCarry": <StarsIcon sx={{ color: "#1D4D54" }} />,
+    "cancellation_policy": <CancelPresentationIcon sx={{ color: "#1D4D54" }} />,
+    "terms_and_conditions": <TextSnippetIcon sx={{ color: "#1D4D54" }} />,
+    "why_us": <QuestionMarkIcon sx={{ color: "#1D4D54" }} />,
 }
 
 const getMustKnowDataFromMustKnow = (mustKnowInfo, mustKnowData) => {
@@ -44,7 +44,7 @@ const getMustKnowDataFromMustKnow = (mustKnowInfo, mustKnowData) => {
             if (mustKnowValue[key].length > 0) {
                 mustKnowData.push({
                     heading: key,
-                    headingIcon:headingIcons[key],
+                    headingIcon: headingIcons[key],
                     details: mustKnowValue[key]
                 })
             }
@@ -60,7 +60,7 @@ const getMustKnowDataFromPolicy = (mustKnowInfo, mustKnowData) => {
         if (mustKnowInfo[key].length > 0) {
             mustKnowData.push({
                 heading: key,
-                headingIcon:headingIcons[key],
+                headingIcon: headingIcons[key],
                 details: mustKnowInfo[key]
             })
         }
@@ -87,7 +87,7 @@ const TripComponent = ({ tripData }) => {
     const mustKnowData = []
     getMustKnowDataFromMustKnow(tripData.mustKnow, mustKnowData)
     getMustKnowDataFromPolicy(tripData.policy_details, mustKnowData)
-    const pickupAndPriceData=tripData.pickupDetails
+    const pickupAndPriceData = tripData.pickupDetails
 
 
     const detailedItinerary = {
@@ -98,7 +98,7 @@ const TripComponent = ({ tripData }) => {
         },
         2: {
             label: "PRICE",
-            component: <PriceDataTab pickupData={pickupAndPriceData}/>
+            component: <PriceDataTab pickupData={pickupAndPriceData} />
 
         },
         3: {
@@ -108,60 +108,62 @@ const TripComponent = ({ tripData }) => {
     }
 
 
-    return (<Box sx={{
-        flexGrow: 1, marginLeft: "7%", marginRight: "7%", padding: "5%",
-        '@media (max-width: 600px)': {
-            marginLeft: "0.5%", marginRight: "0.5%"
-        },
-    }}>
-        <Grid item xs={12} md={8} lg={8}>
-            <Box sx={{ marginBottom: "4%" }}>
-                <Typography variant={"h4"} sx={{
-                    fontSize: "36px",
-                    lineHeight: "48px",
-                    fontFamily: "fangsong",
-                    fontWeight: "800",
-                    color: "#1D4D54",
-                    '@media (max-width: 600px)': {
-                        fontSize: "32px"
-                    }
-                }}>
-                    Trip To: TIRTHAN VALLEY
-                </Typography>
-            </Box>
-        </Grid>
-        <Grid item xs={6} md={8} lg={8}>
-            <Box sx={{ marginBottom: "4%" }}>
-                <img
-                    src={"https://www.fabhotels.com/blog/wp-content/uploads/2020/05/road-trip-hacks-tips-600.jpg"}
-                    style={{
-                        width: "100%",
-                        height: isSmallScreen ? "200px" : '550px',
-                    }} />
-            </Box>
-
-        </Grid>
-
-
-        {/*infoBox, tab and inquiryform*/}
+    return (
         <Box sx={{
+            flexGrow: 1, padding: "5%", backgroundColor: 'background.main',
             '@media (max-width: 600px)': {
-                margin: "0px"
+                marginLeft: "0.5%", marginRight: "0.5%"
             },
         }}>
-            <Grid container spacing={6}>
-                <Grid item xs={12} md={8}>
-                    <InfoBox infoData={infoData} />
-                    <ItineraryTab details={detailedItinerary} />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <InquireForm />
-                </Grid>
+            <Grid item xs={12} md={8} lg={8}>
+                <Box sx={{ marginBottom: "4%" }}>
+                    <Typography variant="h3"
+                        sx={{
+                            fontStyle: 'italic',
+                            marginBottom: '1rem',
+                            '@media (max-width: 600px)': {
+                                fontSize: "32px"
+                            }
+                        }}
+                        color="primary.main"
+                    >
+
+                        Trip To: {tripData.title}
+                    </Typography>
+                </Box>
             </Grid>
+            <Grid item xs={6} md={8} lg={8}>
+                <Box sx={{ marginBottom: "4%" }}>
+                    <img
+                        src={tripData.banner_image}
+                        style={{
+                            width: "100%",
+                            height: isSmallScreen ? "200px" : '550px',
+                        }} />
+                </Box>
+
+            </Grid>
+
+
+            {/*infoBox, tab and inquiryform*/}
+            <Box sx={{
+                '@media (max-width: 600px)': {
+                    margin: "0px"
+                },
+            }}>
+                <Grid container spacing={6}>
+                    <Grid item xs={12} md={8}>
+                        <InfoBox infoData={infoData} />
+                        <ItineraryTab details={detailedItinerary} />
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <InquireForm />
+                    </Grid>
+                </Grid>
+            </Box>
+
+
         </Box>
-
-
-    </Box>
     )
 }
 

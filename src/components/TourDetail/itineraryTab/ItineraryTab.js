@@ -25,7 +25,7 @@ const ItineraryTab=({details})=> {
             {Object.keys(details).map((index,_)=>{
                 const itineraryDetails=details[index]
                 return (
-                    <Tab value={_} label={itineraryDetails.label} sx={{color:"#1D4D54",fontWeight:"800"}} >
+                    <Tab value={_} label={itineraryDetails.label} sx={{color:"primary.main",fontWeight:"800"}} >
                         {itineraryDetails.component}
                     </Tab>
                 )

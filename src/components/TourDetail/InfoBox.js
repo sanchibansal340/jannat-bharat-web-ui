@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
-import {Tooltip, Typography} from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import TimelapseIcon from '@mui/icons-material/Timelapse';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Groups3Icon from '@mui/icons-material/Groups3';
 import React from "react";
 import Grid from "@mui/material/Grid";
 
-const InfoxBoxCard = ({infoIcon, infoHeading, infoData}) => {
+const InfoxBoxCard = ({ infoIcon, infoHeading, infoData }) => {
 
     return (
         <Box
@@ -28,24 +28,19 @@ const InfoxBoxCard = ({infoIcon, infoHeading, infoData}) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        mr: 1,
+                        mr: 1
                     }}
                 >
                     {infoIcon}
                 </Box>
             </Tooltip>
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-                <Typography variant="body2" color="textSecondary"
-                            sx={{lineHeight: 1, fontFamily: "inherit", fontWeight: "500", fontSize: "14px"}}>
+                <Typography gutterBottom variant="body1" color="primary.main">
                     {infoHeading}
                 </Typography>
-                <Typography variant="body2" sx={{
-                    lineHeight: 1.5,
-                    fontFamily: "ui-rounded",
-                    fontSize: "18px",
-                    fontWeight: "700",
-                    color: "#1D4D54"
-                }}>
+                <Typography
+                    gutterBottom variant="h6" color="secondary.main"
+                >
                     <b>{infoData}</b>
                 </Typography>
             </Box>
@@ -55,29 +50,29 @@ const InfoxBoxCard = ({infoIcon, infoHeading, infoData}) => {
 }
 
 
-const InfoBox = ({infoData}) => {
+const InfoBox = ({ infoData }) => {
 
     const tripInfo = {
         0: {
             heading: "Starting Date",
-            icon: <CalendarMonthIcon sx={{fontSize: 30}}/>,
+            icon: <CalendarMonthIcon sx={{ fontSize: 30 }} />,
             data: infoData.startingDate
         },
         1: {
             heading: "Return Date",
-            icon: <CalendarMonthIcon sx={{fontSize: 30}}/>,
+            icon: <CalendarMonthIcon sx={{ fontSize: 30 }} />,
             data: infoData.returnDate
 
         },
         2: {
             heading: "Group Type",
-            icon: <Groups3Icon sx={{fontSize: 30}}/>,
+            icon: <Groups3Icon sx={{ fontSize: 30 }} />,
             data: infoData.groupType
 
         },
         3: {
             heading: "Duration",
-            icon: <TimelapseIcon sx={{fontSize: 30}}/>,
+            icon: <TimelapseIcon sx={{ fontSize: 30 }} />,
             data: infoData.duration
         },
     }
@@ -92,11 +87,11 @@ const InfoBox = ({infoData}) => {
             borderRadius={2}
             boxShadow={2}
             marginBottom="2%"
-            justifyContent="center"
+            backgroundColor={"#ffff"}
 
             sx={{
                 '@media (max-width: 600px)': {
-                    marginTop:"4%",
+                    marginTop: "4%",
 
                 },
             }}
