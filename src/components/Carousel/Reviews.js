@@ -1,6 +1,9 @@
 import React from 'react'
-import Carousel from './Carousel'
 import { Box, Typography } from '@mui/material'
+import ReviewCard from './ReviewCard'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick'
 
 const reviews = [
     {
@@ -41,6 +44,41 @@ const reviews = [
 ]
 
 const Reviews = () => {
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        prevArrow: <></>, 
+        nextArrow: <></>,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 960,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    }
+
     return (
         <Box
             sx={{ padding: '3rem', backgroundColor: 'background.main' }}
@@ -56,7 +94,11 @@ const Reviews = () => {
             >
                 Reviews
             </Typography>
-            <Carousel reviews={reviews} />
+            <Slider {...settings}>
+                {reviews.map((review, index) => (
+                    <ReviewCard key={index} {...review} />
+                ))}
+            </Slider>
         </Box>
     )
 }
