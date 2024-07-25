@@ -15,6 +15,7 @@ import React, { useState } from 'react'
 const pages = [
     { text: 'Upcoming Trips', id: 'upcoming_trips' },
     { text: 'Reviews', id: 'reviews' },
+    { text: 'Gallery', id: 'gallery' },
     { text: 'Contact Us', id: 'contact_us' },
 ]
 

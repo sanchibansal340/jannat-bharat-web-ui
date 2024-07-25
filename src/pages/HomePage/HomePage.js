@@ -7,6 +7,7 @@ import {
     Reviews,
     Footer,
     About,
+    Gallery,
 } from '../../components/utils'
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
             <About />
             <UpcomingTrips />
             <Reviews />
+            <Gallery />
             <Footer />
         </Box>
     )
