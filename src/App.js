@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@mui/material/styles'
 import { HomePage, UpcomingTripsPage } from './pages/utils'
 import { Navbar } from './components/utils'
+import TourDetailsContainer from './containers/TourDetailsContainer'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import theme from './assets/theme'
 import './App.css'
@@ -16,6 +17,10 @@ function App() {
                         <Route
                             path="/upcoming-trips"
                             element={<UpcomingTripsPage />}
+                        />
+                        <Route
+                            path="/tour"
+                            element={<TourDetailsContainer />}
                         />
                     </Routes>
                 </div>
