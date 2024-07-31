@@ -5,7 +5,6 @@ import {
     Typography,
     Card,
     CardMedia,
-    CardContent,
     Box,
 } from '@mui/material'
 import HomepageCarouselImg2 from '../../assets/homepage-carousel-img2.jpg'

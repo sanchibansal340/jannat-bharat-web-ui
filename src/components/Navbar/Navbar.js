@@ -11,6 +11,8 @@ import {
     Typography,
 } from '@mui/material'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { NavHashLink } from 'react-router-hash-link'
 
 const pages = [
     { text: 'Upcoming Trips', id: 'upcoming_trips' },
@@ -37,8 +39,8 @@ function Navbar() {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="/"
+                        component={Link}
+                        to="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -87,8 +89,9 @@ function Navbar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem
-                                    component="a"
-                                    href={`#${page['id']}`}
+                                    component={NavHashLink}
+                                    smooth
+                                    to={`/#${page['id']}`}
                                     key={page['text']}
                                     onClick={handleCloseNavMenu}
                                 >
@@ -103,8 +106,8 @@ function Navbar() {
                     <Typography
                         variant="h5"
                         noWrap
-                        component="a"
-                        href="/"
+                        component={Link}
+                        to="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -129,8 +132,9 @@ function Navbar() {
                     >
                         {pages.map((page) => (
                             <Button
-                                compnent="a"
-                                href={`#${page['id']}`}
+                                component={NavHashLink}
+                                smooth
+                                to={`/#${page['id']}`}
                                 key={page['text']}
                                 sx={{
                                     my: 2,

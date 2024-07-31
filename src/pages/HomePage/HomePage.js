@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import {
-    Navbar,
     Banner,
     UpcomingTrips,
     Reviews,
@@ -13,10 +12,9 @@ import {
 const HomePage = () => {
     return (
         <Box>
-            <Navbar />
             <Banner />
             <About />
-            <UpcomingTrips />
+            <UpcomingTrips isPage={false} />
             <Reviews />
             <Gallery />
             <Footer />

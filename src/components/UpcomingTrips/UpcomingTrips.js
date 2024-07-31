@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Button, Grid, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 import TripCard from './TripCard'
 import HomepageCarouselImg1 from '../../assets/homepage-carousel-img1.jpg'
 import HomepageCarouselImg2 from '../../assets/homepage-carousel-img2.jpg'
@@ -42,7 +43,7 @@ const trips = [
     },
 ]
 
-const UpcomingTrips = () => {
+const UpcomingTrips = ({ isPage }) => {
     return (
         <Box sx={{ my: '3rem', px: '2rem' }} id="upcoming_trips">
             <Box
@@ -67,6 +68,7 @@ const UpcomingTrips = () => {
                 </Typography>
                 <img
                     src={landingPlaneImg}
+                    alt="Landing Plane after Upcoming Trips heading"
                     style={{ marginTop: '-3rem', zIndex: '-1' }}
                 />
             </Box>
@@ -82,12 +84,16 @@ const UpcomingTrips = () => {
                     ))}
                 </Grid>
             </div>
-            <Button
-                sx={{ my: '2rem', textTransform: 'capitalize' }}
-                variant="contained"
-            >
-                More adventures waiting ....
-            </Button>
+            {!isPage && (
+                <Button
+                    component={Link}
+                    to="/upcoming-trips"
+                    sx={{ my: '2rem', textTransform: 'capitalize' }}
+                    variant="contained"
+                >
+                    More adventures waiting ....
+                </Button>
+            )}
         </Box>
     )
 }
