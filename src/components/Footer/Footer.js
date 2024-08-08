@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Grid, Typography, Box } from '@mui/material'
+import { Container, Grid, Typography, Box, IconButton } from '@mui/material'
+import InstagramIcon from '@mui/icons-material/Instagram'
 
 const Footer = () => {
     return (
@@ -27,14 +28,31 @@ const Footer = () => {
                     </Grid>
 
                     <Grid item xs={12} md={6} container justifyContent="center">
-                        <Typography variant="body1" align="center">
-                            &copy; 2024 Jannat Bharat. All Rights Reserved.
-                        </Typography>
+                        <Box>
+                            <Typography
+                                variant="body1"
+                                display="inline"
+                                sx={{ mr: 1 }}
+                            >
+                                Connect with us on:
+                            </Typography>
+                            <IconButton
+                                style={{ color: 'white' }}
+                                aria-label="Instagram"
+                                href="https://www.instagram.com/jannatbharat/"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <InstagramIcon />
+                            </IconButton>
+                        </Box>
                     </Grid>
-
-                    <Grid item xs={12} md={6} />
                 </Grid>
             </Container>
+
+            <Typography variant="body1" align="center" sx={{ mt: '3rem' }}>
+                &copy; 2024 Jannat Bharat. All rights reserved.
+            </Typography>
         </Box>
     )
 }
