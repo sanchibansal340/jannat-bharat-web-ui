@@ -1,11 +1,10 @@
 import { FETCH_TRIP_DETAIL } from '../actions/masterData'
 import { takeEvery, all, put, call } from 'redux-saga/effects'
 import { updateTripData } from '../actions/masterData'
-
-import { fetchData } from '../helper/fetch'
+import { fetchData } from '../services/TripService'
 
 export function* getTripDetail(action) {
-    const url = `http://127.0.0.1:8000/trips/tripDetail/${action.tripId}`
+    const url = `/trips/tripDetail/${action.tripId}`
     try {
         const items = yield call(fetchData, url)
         yield put(updateTripData(items))

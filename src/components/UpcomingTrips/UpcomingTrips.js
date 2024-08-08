@@ -1,49 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Grid, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import TripCard from './TripCard'
-import HomepageCarouselImg1 from '../../assets/homepage-carousel-img1.jpg'
-import HomepageCarouselImg2 from '../../assets/homepage-carousel-img2.jpg'
-import HomepageCarouselImg3 from '../../assets/homepage-carousel-img3.jpg'
-import HomepageCarouselImg4 from '../../assets/homepage-carousel-img4.jpg'
 import landingPlaneImg from '../../assets/landing-plane-img.png'
-
-const trips = [
-    {
-        image: HomepageCarouselImg1,
-        tripDestination: 'Triund Trek',
-        tripType: 'Women Only',
-        startDate: '16 Aug',
-        endDate: '23 Aug',
-        price: 5000,
-    },
-    {
-        image: HomepageCarouselImg2,
-        tripDestination: 'Ladakh',
-        tripType: 'Mixed',
-        startDate: '6 Sept',
-        endDate: '13 Sept',
-        price: 21000,
-    },
-    {
-        image: HomepageCarouselImg3,
-        tripDestination: 'Manali',
-        tripType: 'Men Only',
-        startDate: '27 July',
-        endDate: '31 July',
-        price: 0,
-    },
-    {
-        image: HomepageCarouselImg4,
-        tripDestination: 'Udaipur',
-        tripType: 'Mixed',
-        startDate: '15 Aug',
-        endDate: '19 Aug',
-        price: 8000,
-    },
-]
+import { fetchData } from '../../services/TripService'
 
 const UpcomingTrips = ({ isPage }) => {
+    const [trips, setTrips] = useState([])
+
+    useEffect(() => {
+        fetchData('/trips/getTrips?ordering=-start_date')
+            .then((trips) => {
+                setTrips(trips)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [])
+
     return (
         <Box sx={{ my: '3rem', px: '2rem' }} id="upcoming_trips">
             <Box
@@ -80,7 +54,7 @@ const UpcomingTrips = ({ isPage }) => {
                     sx={{ margin: '0 auto', maxWidth: '1200px' }}
                 >
                     {trips.map((trip, index) => (
-                        <TripCard key={index} trip={trip} />
+                        <TripCard key={trip.id} trip={trip} />
                     ))}
                 </Grid>
             </div>
