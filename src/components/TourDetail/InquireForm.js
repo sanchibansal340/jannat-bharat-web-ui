@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Grid, TextField, Button, Typography, Paper } from '@mui/material'
-import DynamicFormIcon from '@mui/icons-material/DynamicForm';
+import DynamicFormIcon from '@mui/icons-material/DynamicForm'
 
 const InquiryForm = () => {
     return (
