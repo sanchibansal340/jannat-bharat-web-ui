@@ -1,4 +1,4 @@
-import { ApiInstance } from "./ApiInstance"
+import { ApiInstance } from './ApiInstance'
 
 export const fetchData = async (url, args = {}) => {
     const response = await ApiInstance.get(`/about/${url}`)

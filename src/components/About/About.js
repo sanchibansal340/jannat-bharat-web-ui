@@ -8,13 +8,12 @@ function About() {
     useEffect(() => {
         fetchData('1')
             .then((aboutUsResponse) => {
-                setAboutUsContent(aboutUsResponse["about_content"])
+                setAboutUsContent(aboutUsResponse['about_content'])
             })
             .catch((e) => {
                 console.log(e)
             })
     }, [])
-
 
     return (
         <Box
@@ -32,11 +31,10 @@ function About() {
                 About Us
             </Typography>
             <div>
-                <Typography
-                    variant="body1"
-                    sx={{ color: 'secondary.main' }}
-                >
-                    <span dangerouslySetInnerHTML={{ __html: aboutUsContent }} />
+                <Typography variant="body1" sx={{ color: 'secondary.main' }}>
+                    <span
+                        dangerouslySetInnerHTML={{ __html: aboutUsContent }}
+                    />
                 </Typography>
             </div>
         </Box>

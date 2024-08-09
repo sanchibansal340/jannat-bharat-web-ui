@@ -9,11 +9,7 @@ function PageNotFound() {
                 <h2>OOPS</h2>
                 <h1>
                     4
-                    <img
-                        class='img-404'
-                        src={lifeSaverTube}
-                    />
-                    4
+                    <img class="img-404" src={lifeSaverTube} />4
                 </h1>
                 <h2>Page Lost in Sea</h2>
 
