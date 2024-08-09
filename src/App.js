@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@mui/material/styles'
-import { HomePage, UpcomingTripsPage } from './pages/utils'
+import { HomePage, PageNotFound, UpcomingTripsPage } from './pages/utils'
 import { Navbar } from './components/utils'
 import TourDetailsContainer from './containers/TourDetailsContainer'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -22,6 +22,7 @@ function App() {
                             path="/tour"
                             element={<TourDetailsContainer />}
                         />
+                        <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </div>
             </Router>

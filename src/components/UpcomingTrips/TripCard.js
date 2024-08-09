@@ -17,9 +17,9 @@ const TripCard = ({ trip }) => {
 
     return (
         <Grid item xs={12} sm={6} md={3}>
-            <Link to={`/tour/${trip.id}`} style={{textDecoration: 'none'}}>
+            <Link to={`/tour/${trip.id}`} style={{ textDecoration: 'none' }}>
                 <Card
-                    sx={{ height: '100%' }}                
+                    sx={{ height: '100%' }}
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}
                 >
@@ -65,11 +65,17 @@ const TripCard = ({ trip }) => {
                         </Box>
                     </Box>
                     <CardContent>
-                        <Typography gutterBottom variant="h6" color="primary.main">
+                        <Typography
+                            gutterBottom
+                            variant="h6"
+                            color="primary.main"
+                        >
                             {title} | {type_of_group}
                         </Typography>
                         <Typography variant="body1" color="secondary.main">
-                            {price !== 0 ? `Starting from ₹${price}` : 'Sold out!'}
+                            {price !== 0
+                                ? `Starting from ₹${price}`
+                                : 'Sold out!'}
                         </Typography>
                     </CardContent>
                 </Card>
