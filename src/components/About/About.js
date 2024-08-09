@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { Typography, Box } from '@mui/material'
+import { fetchData } from '../../services/TripService'
 
 function About() {
     const [aboutUsContent, setAboutUsContent] = useState('')
-    
 
     useEffect(() => {
-        
+        fetchData('/trips/about/1')
+            .then((aboutUsResponse) => {
+                setAboutUsContent(aboutUsResponse["about_content"])
+            })
+            .catch((e) => {
+                console.log(e)
+            })
     }, [])
 
 
@@ -30,9 +36,7 @@ function About() {
                     variant="body1"
                     sx={{ color: 'secondary.main' }}
                 >
-                    {aboutUsContent}
-                    <br />
-                    <br />
+                    <span dangerouslySetInnerHTML={{ __html: aboutUsContent }} />
                 </Typography>
             </div>
         </Box>
