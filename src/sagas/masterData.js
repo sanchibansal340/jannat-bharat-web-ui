@@ -4,7 +4,7 @@ import { updateTripData } from '../actions/masterData'
 import { fetchData } from '../services/TripService'
 
 export function* getTripDetail(action) {
-    const url = `/trips/tripDetail/${action.tripId}`
+    const url = `tripDetail/${action.tripId}`
     try {
         const items = yield call(fetchData, url)
         yield put(updateTripData(items))

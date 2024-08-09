@@ -9,7 +9,7 @@ const UpcomingTrips = ({ isPage }) => {
     const [trips, setTrips] = useState([])
 
     useEffect(() => {
-        fetchData('/trips/getTrips?ordering=-start_date')
+        fetchData('getTrips?ordering=-start_date')
             .then((trips) => {
                 setTrips(trips)
             })

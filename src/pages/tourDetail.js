@@ -163,7 +163,7 @@ const TripComponent = ({ tripData }) => {
 const TourDetail = ({ tripData, getTripDetail }) => {
     useEffect(() => {
         if (tripData === null) {
-            getTripDetail(1)
+            getTripDetail(3)
         }
     }, [])
 
