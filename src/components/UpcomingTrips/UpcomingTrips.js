@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Grid, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Box, Grid, Typography } from '@mui/material'
 import TripCard from './TripCard'
 import landingPlaneImg from '../../assets/landing-plane-img.png'
 import { fetchData } from '../../services/TripService'
+import ShowMoreButtonComponent from '../ShowMoreButtonComponent'
 
 const UpcomingTrips = ({ isPage }) => {
     const [trips, setTrips] = useState([])
@@ -59,14 +59,7 @@ const UpcomingTrips = ({ isPage }) => {
                 </Grid>
             </div>
             {!isPage && (
-                <Button
-                    component={Link}
-                    to="/upcoming-trips"
-                    sx={{ my: '2rem', textTransform: 'capitalize' }}
-                    variant="contained"
-                >
-                    More adventures waiting ....
-                </Button>
+                <ShowMoreButtonComponent linkTo={"/upcoming-trips"} buttonText="More adventures waiting ...." />
             )}
         </Box>
     )

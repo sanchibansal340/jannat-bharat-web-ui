@@ -4,6 +4,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick'
 import './Gallery.css'
+import ShowMoreButtonComponent from '../ShowMoreButtonComponent'
 
 const images = [
     {
@@ -96,6 +97,7 @@ const Gallery = () => {
                     />
                 ))}
             </Slider>
+            <ShowMoreButtonComponent linkTo={"https://www.instagram.com/jannatbharat/?igsh=bTcycnRnOHpwOWNq"} buttonText="Let's sneek peek into more"  />
         </Box>
     )
 }

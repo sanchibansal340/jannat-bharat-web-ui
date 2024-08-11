@@ -4,6 +4,7 @@ import ReviewCard from './ReviewCard'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick'
+import ShowMoreButtonComponent from '../ShowMoreButtonComponent'
 
 const reviews = [
     {
@@ -99,6 +100,7 @@ const Reviews = () => {
                     <ReviewCard key={index} {...review} />
                 ))}
             </Slider>
+            <ShowMoreButtonComponent linkTo={"https://rb.gy/v533p4"} buttonText="Click here to read more ...." target="_blank" />
         </Box>
     )
 }
