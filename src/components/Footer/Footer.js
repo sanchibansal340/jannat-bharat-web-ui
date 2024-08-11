@@ -71,7 +71,7 @@ const Footer = () => {
                 >
                     Sanchi
                 </Link>{' '}
-                 and {' '}
+                and{' '}
                 <Link
                     sx={{ color: 'white', textDecorationColor: 'white' }}
                     variant="h6"
