@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Typography, Box } from '@mui/material'
-import { fetchData } from '../../services/AboutService'
+import { fetchData } from '../../services/HomePageService'
 
 function About() {
     const [aboutUsContent, setAboutUsContent] = useState('')
 
     useEffect(() => {
-        fetchData('1')
+        fetchData('about/')
             .then((aboutUsResponse) => {
                 setAboutUsContent(aboutUsResponse['about_content'])
             })
