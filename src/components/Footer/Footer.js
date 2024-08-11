@@ -1,5 +1,12 @@
 import React from 'react'
-import { Container, Grid, Typography, Box, IconButton } from '@mui/material'
+import {
+    Container,
+    Grid,
+    Typography,
+    Box,
+    IconButton,
+    Link,
+} from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram'
 
 const Footer = () => {
@@ -8,7 +15,7 @@ const Footer = () => {
             sx={{
                 backgroundColor: 'primary.dark',
                 color: 'white',
-                padding: '3rem 0',
+                py: '3rem',
             }}
             id="contact_us"
         >
@@ -52,6 +59,29 @@ const Footer = () => {
 
             <Typography variant="body1" align="center" sx={{ mt: '3rem' }}>
                 &copy; 2024 Jannat Bharat. All rights reserved.
+                <br />
+                Developed by{' '}
+                <Link
+                    sx={{ color: 'white', textDecorationColor: 'white' }}
+                    variant="h6"
+                    underline="always"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://sanchibansal340.github.io/"
+                >
+                    Sanchi
+                </Link>{' '}
+                 and {' '}
+                <Link
+                    sx={{ color: 'white', textDecorationColor: 'white' }}
+                    variant="h6"
+                    underline="always"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://jaya2320.github.io/jaya752/"
+                >
+                    Jaya
+                </Link>
             </Typography>
         </Box>
     )
