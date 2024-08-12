@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import hoveringIcon from '../../assets/compass.svg'
 
 const TripCard = ({ trip }) => {
-    const { banner_image, title, type_of_group, start_date, end_date } = trip
+    const { banner_image, title, type_of_group, start_date, end_date, starting_from_price } = trip
     const [isHovering, setIsHovering] = useState(false)
     const price = trip['pickupDetails'][0]['quad_sharing_price']
 
@@ -74,7 +74,7 @@ const TripCard = ({ trip }) => {
                         </Typography>
                         <Typography variant="body1" color="secondary.main">
                             {price !== 0
-                                ? `Starting from ₹${price}`
+                                ? `Starting from ₹${starting_from_price}`
                                 : 'Sold out!'}
                         </Typography>
                     </CardContent>

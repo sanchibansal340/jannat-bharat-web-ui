@@ -4,19 +4,31 @@ import TripCard from './TripCard'
 import landingPlaneImg from '../../assets/landing-plane-img.png'
 import { fetchData } from '../../services/TripService'
 import ShowMoreButtonComponent from '../ShowMoreButtonComponent'
+import { useLoading } from '../Loader/LoaderContext'
 
 const UpcomingTrips = ({ isPage }) => {
     const [trips, setTrips] = useState([])
+    const { startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
-        fetchData('getTrips?ordering=-start_date')
-            .then((trips) => {
-                setTrips(trips)
-            })
-            .catch((e) => {
-                console.log(e)
-            })
-    }, [])
+        if (trips.length === 0) {
+            const fetchTrips = async () => {
+                startLoading();
+                try {
+                    const trips = await fetchData('getTrips?ordering=-start_date');
+                    setTrips(trips);
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    setTimeout(() => {
+                    stopLoading();
+                }, 400)
+
+                }
+            };
+            fetchTrips();
+        }
+    }, []);
 
     return (
         <Box sx={{ my: '3rem', px: '2rem' }} id="upcoming_trips">

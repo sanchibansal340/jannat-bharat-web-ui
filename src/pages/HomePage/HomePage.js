@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from 'react'
 import { Box } from '@mui/material'
 import { Banner } from '../../components/utils'
+import LoaderComponent from "../../components/Loader/Loader"
+
 
 const About = lazy(() =>
     import('../../components/utils').then((module) => ({

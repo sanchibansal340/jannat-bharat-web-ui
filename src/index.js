@@ -5,13 +5,16 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import store from './reducers/store'
 import { Provider } from 'react-redux'
+import { LoadingProvider } from './components/Loader/LoaderContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
+        <LoadingProvider>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </LoadingProvider>
     </React.StrictMode>
 )
 

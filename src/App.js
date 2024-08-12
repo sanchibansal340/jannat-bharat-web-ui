@@ -5,10 +5,15 @@ import TourDetailsContainer from './containers/TourDetailsContainer'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import theme from './assets/theme'
 import './App.css'
+import { useLoading } from './components/Loader/LoaderContext'
+import LoaderComponent from './components/Loader/Loader'
 
 function App() {
+    const { loading } = useLoading();
+
     return (
         <ThemeProvider theme={theme}>
+            {loading && <LoaderComponent />}
             <Router>
                 <div className="App">
                     <Navbar />
@@ -19,7 +24,7 @@ function App() {
                             element={<UpcomingTripsPage />}
                         />
                         <Route
-                            path="/tour"
+                            path="/tour/:tripId"
                             element={<TourDetailsContainer />}
                         />
                         <Route path="*" element={<PageNotFound />} />
