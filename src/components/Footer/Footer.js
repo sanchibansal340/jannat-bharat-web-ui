@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Container,
     Grid,
@@ -8,8 +8,39 @@ import {
     Link,
 } from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import { fetchData } from '../../services/HomePageService'
 
 const Footer = () => {
+    const [emailContact, setEmailContact] = useState('')
+    const [phoneContact, setPhoneContact] = useState('')
+    const [igContact, setIgContact] = useState('')
+    const [fbContact, setFbContact] = useState('')
+
+    const setOtherContacts = (allContacts) => {
+        allContacts.some((contact) => {
+            if (contact.contact_name === 'Email') {
+                setEmailContact(contact.contact_value)
+            } else if (contact.contact_name === 'Phone') {
+                setPhoneContact(contact.contact_value)
+            } else if (contact.contact_name === 'Instagram') {
+                setIgContact(contact.contact_value)
+            } else if (contact.contact_name === 'Facebook') {
+                setFbContact(contact.contact_value)
+            }
+        })
+    }
+
+    useEffect(() => {
+        fetchData('contacts/')
+            .then((contactsResponse) => {
+                setOtherContacts(contactsResponse)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [])
+
     return (
         <Box
             sx={{
@@ -25,35 +56,62 @@ const Footer = () => {
                     justifyContent="space-between"
                     alignItems="center"
                 >
-                    <Grid item xs={12} md={6}>
-                        <Typography variant="body1">
-                            Email: example@example.com
-                        </Typography>
-                        <Typography variant="body1">
-                            Phone: +1234567890
-                        </Typography>
-                    </Grid>
+                    {(emailContact !== '' || phoneContact !== '') && (
+                        <Grid item xs={12} md={6}>
+                            {emailContact !== '' && (
+                                <Typography variant="body1">
+                                    Email: {emailContact}
+                                </Typography>
+                            )}
+                            {phoneContact !== '' && (
+                                <Typography variant="body1">
+                                    Phone: {phoneContact}
+                                </Typography>
+                            )}
+                        </Grid>
+                    )}
 
-                    <Grid item xs={12} md={6} container justifyContent="center">
-                        <Box>
-                            <Typography
-                                variant="body1"
-                                display="inline"
-                                sx={{ mr: 1 }}
-                            >
-                                Connect with us on:
-                            </Typography>
-                            <IconButton
-                                style={{ color: 'white' }}
-                                aria-label="Instagram"
-                                href="https://www.instagram.com/jannatbharat/"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <InstagramIcon />
-                            </IconButton>
-                        </Box>
-                    </Grid>
+                    {(igContact !== '' || fbContact !== '') && (
+                        <Grid
+                            item
+                            xs={12}
+                            md={6}
+                            container
+                            justifyContent="center"
+                        >
+                            <Box>
+                                <Typography
+                                    variant="body1"
+                                    display="inline"
+                                    sx={{ mr: 1 }}
+                                >
+                                    Connect with us on:
+                                </Typography>
+                                {igContact !== '' && (
+                                    <IconButton
+                                        style={{ color: 'white' }}
+                                        aria-label="Instagram"
+                                        href={igContact}
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <InstagramIcon />
+                                    </IconButton>
+                                )}
+                                {fbContact !== '' && (
+                                    <IconButton
+                                        style={{ color: 'white' }}
+                                        aria-label="Facebook"
+                                        href={fbContact}
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <FacebookIcon />
+                                    </IconButton>
+                                )}
+                            </Box>
+                        </Grid>
+                    )}
                 </Grid>
             </Container>
 

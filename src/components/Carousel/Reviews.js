@@ -75,7 +75,11 @@ const Reviews = () => {
                     <ReviewCard key={review.id} {...review} />
                 ))}
             </Slider>
-            <ShowMoreButtonComponent linkTo={"https://rb.gy/v533p4"} buttonText="Click here to read more ...." target="_blank" />
+            <ShowMoreButtonComponent
+                linkTo={'https://g.co/kgs/eP4mdSt'}
+                buttonText="Click here to read more ...."
+                target="_blank"
+            />
         </Box>
     )
 }

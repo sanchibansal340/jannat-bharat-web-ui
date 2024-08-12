@@ -1,37 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Container,
     Grid,
     Typography,
     Card,
     CardMedia,
+    CardContent,
     Box,
 } from '@mui/material'
-import HomepageCarouselImg2 from '../../assets/homepage-carousel-img2.jpg'
-import HomepageCarouselImg3 from '../../assets/homepage-carousel-img3.jpg'
-import HomepageCarouselImg4 from '../../assets/homepage-carousel-img1.jpg'
 import seaImage from '../../assets/sea.png'
-
-const homepageCarouselImages = [
-    {
-        image: HomepageCarouselImg2,
-        title: 'Ladakh',
-        subtitle: 'Meet the Photographer Who Chases Stars',
-        transform: 'rotate(-3deg)',
-    },
-    {
-        image: HomepageCarouselImg3,
-        title: 'Agra',
-        subtitle: 'The most beautiful token of love',
-        transform: 'rotate(2deg)',
-    },
-    {
-        image: HomepageCarouselImg4,
-        title: 'Meghalaya',
-        subtitle: 'Explore the north easts',
-        transform: 'rotate(-2deg)',
-    },
-]
+import { fetchData } from '../../services/HomePageService'
 
 const styles = {
     bannerImage: {
@@ -50,6 +28,24 @@ const styles = {
 }
 
 function Banner() {
+    const [homepageCarouselImages, setHomepageCarouselImages] = useState([])
+
+    useEffect(() => {
+        fetchData('banners/')
+            .then((bannerImagesResponse) => {
+                setHomepageCarouselImages(bannerImagesResponse)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [])
+
+    const homepageCarouselImagesTransform = [
+        'rotate(-3deg)',
+        'rotate(2deg)',
+        'rotate(-2deg)',
+    ]
+
     return (
         <Box sx={styles.bannerImage} id="banner">
             <Container>
@@ -74,18 +70,26 @@ function Banner() {
                 <Grid container spacing={4} sx={{ marginTop: '2rem' }}>
                     {homepageCarouselImages.map(
                         (homepageCarouselImage, index) => (
-                            <Grid item xs={12} sm={6} md={4} key={index}>
+                            <Grid
+                                item
+                                xs={12}
+                                sm={6}
+                                md={4}
+                                key={homepageCarouselImage.id}
+                            >
                                 <Card
                                     sx={{
                                         transform:
-                                            homepageCarouselImage.transform,
+                                            homepageCarouselImagesTransform[
+                                                index
+                                            ],
                                         border: '0.7rem dashed white',
                                     }}
                                 >
                                     <CardMedia
                                         component="img"
                                         image={homepageCarouselImage.image}
-                                        alt={homepageCarouselImage.title}
+                                        alt={homepageCarouselImage.caption}
                                         sx={{
                                             height: {
                                                 xs: '12.5rem',
@@ -95,12 +99,12 @@ function Banner() {
                                         }}
                                     />
                                     {/* <CardContent
-                                    
-                                >
-                                    <Typography variant="h6">
-                                        {homepageCarouselImage.title}
-                                    </Typography>
-                                </CardContent> */}
+                                        // style={{ transform: 'translateY(5%)' }}
+                                    >
+                                        <Typography variant="h6">
+                                            {homepageCarouselImage.caption}
+                                        </Typography>
+                                    </CardContent> */}
                                 </Card>
                             </Grid>
                         )

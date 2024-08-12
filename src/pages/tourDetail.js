@@ -20,8 +20,8 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useEffect } from 'react'
 import { Button } from '@mui/material'
 import { DownloadForOffline } from '@mui/icons-material'
-import axios from 'axios';
-import { saveAs } from 'file-saver';
+import axios from 'axios'
+import { saveAs } from 'file-saver'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -103,17 +103,18 @@ const TripComponent = ({ tripData }) => {
 
     const handleDownload = async () => {
         try {
-          const response = await axios.get(tripData.pdf, {
-            responseType: 'blob', 
-          });
+            const response = await axios.get(tripData.pdf, {
+                responseType: 'blob',
+            })
 
-          const blob = new Blob([response.data], { type: response.headers['content-type'] });
-          saveAs(blob, `${tripData.title}.pdf`);
+            const blob = new Blob([response.data], {
+                type: response.headers['content-type'],
+            })
+            saveAs(blob, `${tripData.title}.pdf`)
         } catch (error) {
-          console.error('Error downloading the file', error);
+            console.error('Error downloading the file', error)
         }
-      };
-
+    }
 
     return (
         <Box
@@ -182,14 +183,21 @@ const TripComponent = ({ tripData }) => {
                             }}
                             fullWidth
                         >
-                            <Box display={"flex"}>
-                                <DownloadForOffline sx={{fontSize:"40px",mr:"10px"}} />
-                                <Typography color="#fff" sx={{fontSize:"20px"}}> Download Itinerary</Typography>
-
+                            <Box display={'flex'}>
+                                <DownloadForOffline
+                                    sx={{ fontSize: '40px', mr: '10px' }}
+                                />
+                                <Typography
+                                    color="#fff"
+                                    sx={{ fontSize: '20px' }}
+                                >
+                                    {' '}
+                                    Download Itinerary
+                                </Typography>
                             </Box>
-
                         </Button>
-                        <br /><br />
+                        <br />
+                        <br />
                         <InquireForm />
                     </Grid>
                 </Grid>

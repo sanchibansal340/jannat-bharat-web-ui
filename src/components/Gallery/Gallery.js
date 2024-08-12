@@ -7,7 +7,6 @@ import { fetchData } from '../../services/HomePageService'
 import './Gallery.css'
 import ShowMoreButtonComponent from '../ShowMoreButtonComponent'
 
-
 const Gallery = () => {
     const settings = {
         dots: false,
@@ -78,7 +77,12 @@ const Gallery = () => {
                     />
                 ))}
             </Slider>
-            <ShowMoreButtonComponent linkTo={"https://www.instagram.com/jannatbharat/?igsh=bTcycnRnOHpwOWNq"} buttonText="Let's sneek peek into more"  />
+            <ShowMoreButtonComponent
+                linkTo={
+                    'https://www.instagram.com/jannatbharat/?igsh=bTcycnRnOHpwOWNq'
+                }
+                buttonText="Let's sneek peek into more"
+            />
         </Box>
     )
 }

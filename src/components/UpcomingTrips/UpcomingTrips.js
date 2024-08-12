@@ -59,7 +59,10 @@ const UpcomingTrips = ({ isPage }) => {
                 </Grid>
             </div>
             {!isPage && (
-                <ShowMoreButtonComponent linkTo={"/upcoming-trips"} buttonText="More adventures waiting ...." />
+                <ShowMoreButtonComponent
+                    linkTo={'/upcoming-trips'}
+                    buttonText="More adventures waiting ...."
+                />
             )}
         </Box>
     )
