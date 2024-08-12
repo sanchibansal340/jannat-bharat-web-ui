@@ -1,24 +1,36 @@
 import React from 'react'
-import lifeSaverTube from '../../assets/life-saver-tube2.png'
-import './PageNotFound.css'
+import { Box } from '@mui/material'
+import forestImage from '../../assets/forest.jpg'
+
+const styles = {
+    forestBannerImage: {
+        position: 'relative',
+        width: '100%',
+        height: '83vh',
+        backgroundImage: `url(${forestImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        py: '3rem',
+        overflowY: 'hidden',
+    },
+    error404text: {
+        fontWeight: 'bold',
+        position: 'relative',
+        color: 'white',
+        backgroundClip: 'text',
+        top: '25%',
+    },
+}
 
 function PageNotFound() {
     return (
-        <div className="page-not-found">
-            <section>
-                <h2>OOPS</h2>
-                <h1>
-                    4
-                    <img class="img-404" src={lifeSaverTube} />4
-                </h1>
-                <h2>Page Lost in Sea</h2>
-
-                <div class="air air1"></div>
-                <div class="air air2"></div>
-                <div class="air air3"></div>
-                <div class="air air4"></div>
-            </section>
-        </div>
+        <Box sx={styles.forestBannerImage} className="page-not-found">
+            <h1 style={styles.error404text}>404</h1>
+            <h3 style={styles.error404text} sx={{ mt: '1rem' }}>
+                Looks like you've wandered too far
+            </h3>
+        </Box>
     )
 }
 
