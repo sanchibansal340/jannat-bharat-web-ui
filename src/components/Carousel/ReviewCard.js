@@ -13,7 +13,7 @@ const ReviewCard = ({ name, review, rating }) => (
             borderRadius: 2,
             boxShadow: 1,
             backgroundColor: 'white',
-            height: '11.4rem',
+            height: '30rem',
         }}
     >
         <Box
