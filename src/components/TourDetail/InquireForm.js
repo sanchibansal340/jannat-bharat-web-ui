@@ -1,8 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Grid, TextField, Button, Typography, Paper } from '@mui/material'
 import DynamicFormIcon from '@mui/icons-material/DynamicForm'
+import { sendMail } from '../../services/TripService'
 
 const InquiryForm = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        numberOfPeople: '',
+        message: '',
+    })
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const response = sendMail('send-email/', formData)
+            alert(response.data.message)
+        } catch (error) {
+            alert('Failed to send email')
+        }
+    }
     return (
         <Box
             sx={{
@@ -28,13 +50,20 @@ const InquiryForm = () => {
                             </Typography>
                         </Box>
 
-                        <form noValidate autoComplete="off">
+                        <form
+                            noValidate
+                            autoComplete="off"
+                            onSubmit={handleSubmit}
+                        >
                             <Box sx={{ mb: 2, marginTop: '10px' }}>
                                 <TextField
                                     fullWidth
                                     label="Name"
                                     variant="outlined"
                                     required
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
@@ -44,6 +73,9 @@ const InquiryForm = () => {
                                     variant="outlined"
                                     type="email"
                                     required
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
@@ -52,14 +84,22 @@ const InquiryForm = () => {
                                     label="Phone"
                                     variant="outlined"
                                     type="tel"
+                                    required
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
                                 <TextField
                                     fullWidth
-                                    label="Number of Adults"
+                                    label="Number of People"
                                     variant="outlined"
                                     type={'number'}
+                                    required
+                                    name="numberOfPeople"
+                                    value={formData.numberOfPeople}
+                                    onChange={handleChange}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
@@ -70,6 +110,9 @@ const InquiryForm = () => {
                                     multiline
                                     rows={4}
                                     required
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
                                 />
                             </Box>
                             <Button

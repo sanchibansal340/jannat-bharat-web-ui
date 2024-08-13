@@ -9,7 +9,7 @@ import { useLoading } from './components/Loader/LoaderContext'
 import LoaderComponent from './components/Loader/Loader'
 
 function App() {
-    const { loading } = useLoading();
+    const { loading } = useLoading()
 
     return (
         <ThemeProvider theme={theme}>

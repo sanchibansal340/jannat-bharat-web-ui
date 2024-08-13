@@ -1,33 +1,30 @@
 import * as React from 'react'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-import { useLoading } from '../components/Loader/LoaderContext';
-import TripComponent from '../components/TourDetail/TripComponent';
-
+import { useParams } from 'react-router-dom'
+import { useLoading } from '../components/Loader/LoaderContext'
+import TripComponent from '../components/TourDetail/TripComponent'
 
 const TourDetail = ({ tripData, getTripDetail }) => {
-    const { tripId } = useParams();
-    const { startLoading, stopLoading } = useLoading();
+    const { tripId } = useParams()
+    const { startLoading, stopLoading } = useLoading()
 
     useEffect(() => {
         if (tripData === null) {
             const fetchTrip = async () => {
-                startLoading();
+                startLoading()
                 try {
-                    getTripDetail(tripId);
+                    getTripDetail(tripId)
                 } catch (error) {
-                    console.error(error);
+                    console.error(error)
                 } finally {
                     setTimeout(() => {
-                    stopLoading();
-                }, 500)
-
+                        stopLoading()
+                    }, 500)
                 }
-            };
-            fetchTrip();
+            }
+            fetchTrip()
         }
-    }, []);
-
+    }, [])
 
     return tripData !== null && <TripComponent tripData={tripData} />
 }

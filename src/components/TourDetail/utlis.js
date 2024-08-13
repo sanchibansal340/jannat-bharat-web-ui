@@ -5,8 +5,6 @@ import AllInclusiveIcon from '@mui/icons-material/AllInclusive'
 import TextSnippetIcon from '@mui/icons-material/TextSnippet'
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation'
 
-
-
 export const headingIcons = {
     inclusions: <AllInclusiveIcon sx={{ color: '#1D4D54' }} />,
     exclusions: <ErrorOutlineIcon sx={{ color: '#1D4D54' }} />,

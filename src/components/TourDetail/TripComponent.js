@@ -14,8 +14,7 @@ import { Button } from '@mui/material'
 import { DownloadForOffline } from '@mui/icons-material'
 import axios from 'axios'
 import { saveAs } from 'file-saver'
-import { getMustKnowDataFromMustKnow,getMustKnowDataFromPolicy } from './utlis'
-
+import { getMustKnowDataFromMustKnow, getMustKnowDataFromPolicy } from './utlis'
 
 const TripComponent = ({ tripData }) => {
     const theme = useTheme()
@@ -72,7 +71,7 @@ const TripComponent = ({ tripData }) => {
             sx={{
                 flexGrow: 1,
                 padding: '5%',
-                backgroundColor: 'background.main',
+                backgroundColor: '#fff',
                 '@media (max-width: 600px)': {
                     marginLeft: '0.5%',
                     marginRight: '0.5%',

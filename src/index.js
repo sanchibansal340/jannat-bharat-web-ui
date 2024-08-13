@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals'
 import store from './reducers/store'
 import { Provider } from 'react-redux'
 import { LoadingProvider } from './components/Loader/LoaderContext'
+import { ViewCounterContextProvider } from './components/ViewCounter/ViewContextProvider'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
         <LoadingProvider>
-            <Provider store={store}>
-                <App />
-            </Provider>
+            <ViewCounterContextProvider>
+                <Provider store={store}>
+                    <App />
+                </Provider>
+            </ViewCounterContextProvider>
         </LoadingProvider>
     </React.StrictMode>
 )

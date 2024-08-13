@@ -8,27 +8,28 @@ import { useLoading } from '../Loader/LoaderContext'
 
 const UpcomingTrips = ({ isPage }) => {
     const [trips, setTrips] = useState([])
-    const { startLoading, stopLoading } = useLoading();
+    const { startLoading, stopLoading } = useLoading()
 
     useEffect(() => {
         if (trips.length === 0) {
             const fetchTrips = async () => {
-                startLoading();
+                startLoading()
                 try {
-                    const trips = await fetchData('getTrips?ordering=-start_date');
-                    setTrips(trips);
+                    const trips = await fetchData(
+                        'getTrips?ordering=-start_date'
+                    )
+                    setTrips(trips)
                 } catch (error) {
-                    console.error(error);
+                    console.error(error)
                 } finally {
                     setTimeout(() => {
-                    stopLoading();
-                }, 400)
-
+                        stopLoading()
+                    }, 400)
                 }
-            };
-            fetchTrips();
+            }
+            fetchTrips()
         }
-    }, []);
+    }, [])
 
     return (
         <Box sx={{ my: '3rem', px: '2rem' }} id="upcoming_trips">
