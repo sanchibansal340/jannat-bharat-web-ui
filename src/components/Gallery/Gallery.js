@@ -67,13 +67,13 @@ const Gallery = () => {
             >
                 Gallery
             </Typography>
-            <Slider {...settings}>
+            <Slider {...settings} className="slider-container">
                 {galleryImages.map((image, index) => (
                     <img
                         key={image.id}
                         src={image.image}
                         alt={`Travel ${index + 1}`}
-                        style={{ maxHeight: '400px' }}
+                        style={{ maxHeight: '100px' }}
                     />
                 ))}
             </Slider>
