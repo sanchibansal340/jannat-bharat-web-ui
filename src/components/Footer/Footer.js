@@ -10,12 +10,14 @@ import {
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import { fetchData } from '../../services/HomePageService'
+import { WhatsApp } from '@mui/icons-material'
 
 const Footer = () => {
     const [emailContact, setEmailContact] = useState('')
     const [phoneContact, setPhoneContact] = useState('')
     const [igContact, setIgContact] = useState('')
     const [fbContact, setFbContact] = useState('')
+    const [ whatsappContact, setWhatsappContact] = useState('')
 
     const setOtherContacts = (allContacts) => {
         allContacts.some((contact) => {
@@ -27,6 +29,9 @@ const Footer = () => {
                 setIgContact(contact.contact_value)
             } else if (contact.contact_name === 'Facebook') {
                 setFbContact(contact.contact_value)
+            }else if (contact.contact_name === 'Whatsapp') {
+                var redirectToWhatsappLink = "https://api.whatsapp.com/send?phone="+contact.contact_value
+                setWhatsappContact(redirectToWhatsappLink)
             }
         })
     }
@@ -71,7 +76,7 @@ const Footer = () => {
                         </Grid>
                     )}
 
-                    {(igContact !== '' || fbContact !== '') && (
+                    {(igContact !== '' || fbContact !== '' || whatsappContact !== '') && (
                         <Grid
                             item
                             xs={12}
@@ -107,6 +112,17 @@ const Footer = () => {
                                         rel="noopener"
                                     >
                                         <FacebookIcon />
+                                    </IconButton>
+                                )}
+                                  {whatsappContact !== '' && (
+                                    <IconButton
+                                        style={{ color: 'white' }}
+                                        aria-label="Whatsapp"
+                                        href={whatsappContact} 
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <WhatsApp />
                                     </IconButton>
                                 )}
                             </Box>
