@@ -58,9 +58,12 @@ const CustomAccordionTab = ({
                 >
                     {isNullOrUndefinedOrBlank(pickupDetail) ? (
                         <Typography sx={{ color: 'secondary.main' }}>
-                            <div
-                                dangerouslySetInnerHTML={{ __html: details }}
-                            />
+                            <Box padding="15px" >
+                                <div
+                                    dangerouslySetInnerHTML={{ __html: details }}
+                                />
+                            </Box>
+
                         </Typography>
                     ) : (
                         <Typography

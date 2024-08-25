@@ -1,8 +1,6 @@
 import GridViewIcon from '@mui/icons-material/GridView'
 import TodayIcon from '@mui/icons-material/Today'
-import {
-    Typography, Box
-} from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import React from 'react'
 import CustomAccordionTab from '../CustomAccordionTab'
 

@@ -1,47 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Typography } from '@mui/material'
 import ReviewCard from './ReviewCard'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick'
-
-const reviews = [
-    {
-        userImage: 'https://via.placeholder.com/150',
-        userName: 'John Doe',
-        reviewText:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        rating: 4.5,
-    },
-    {
-        userImage: 'https://via.placeholder.com/150',
-        userName: 'Jane Smith',
-        reviewText:
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        rating: 5,
-    },
-    {
-        userImage: 'https://via.placeholder.com/150',
-        userName: 'Alice Johnson',
-        reviewText:
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        rating: 3.5,
-    },
-    {
-        userImage: 'https://via.placeholder.com/150',
-        userName: 'Sia',
-        reviewText:
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        rating: 5.0,
-    },
-    {
-        userImage: 'https://via.placeholder.com/150',
-        userName: 'Albert Einstein',
-        reviewText:
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        rating: 4.0,
-    },
-]
+import ShowMoreButtonComponent from '../ShowMoreButtonComponent'
+import { fetchData } from '../../services/HomePageService'
 
 const Reviews = () => {
     const settings = {
@@ -79,6 +43,18 @@ const Reviews = () => {
         ],
     }
 
+    const [reviews, setReviews] = useState([])
+
+    useEffect(() => {
+        fetchData('reviews/')
+            .then((reviewsResponse) => {
+                setReviews(reviewsResponse)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [])
+
     return (
         <Box
             sx={{ padding: '3rem', backgroundColor: 'background.main' }}
@@ -95,10 +71,15 @@ const Reviews = () => {
                 Reviews
             </Typography>
             <Slider {...settings}>
-                {reviews.map((review, index) => (
-                    <ReviewCard key={index} {...review} />
+                {reviews.map((review) => (
+                    <ReviewCard key={review.id} {...review} />
                 ))}
             </Slider>
+            <ShowMoreButtonComponent
+                linkTo={'https://g.co/kgs/eP4mdSt'}
+                buttonText="Click here to read more ...."
+                target="_blank"
+            />
         </Box>
     )
 }

@@ -13,6 +13,7 @@ import {
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { NavHashLink } from 'react-router-hash-link'
+import { ViewCounter } from '../utils'
 
 const pages = [
     { text: 'Upcoming Trips', id: 'upcoming_trips' },
@@ -147,6 +148,7 @@ function Navbar() {
                             </Button>
                         ))}
                     </Box>
+                    <ViewCounter />
                 </Toolbar>
             </Container>
         </AppBar>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Box, Typography, Rating } from '@mui/material'
 
-const ReviewCard = ({ userImage, userName, reviewText, rating }) => (
+const ReviewCard = ({ name, review, rating }) => (
     <Box
         sx={{
             display: 'flex',
@@ -13,7 +13,7 @@ const ReviewCard = ({ userImage, userName, reviewText, rating }) => (
             borderRadius: 2,
             boxShadow: 1,
             backgroundColor: 'white',
-            height: '11.4rem',
+            height: '30rem',
         }}
     >
         <Box
@@ -29,15 +29,15 @@ const ReviewCard = ({ userImage, userName, reviewText, rating }) => (
                     height: 24,
                     marginRight: '0.7em',
                 }}
-                alt={userName}
-                src={userImage}
+                alt={name}
+                src="https://via.placeholder.com/150"
             />
             <Typography variant="h6" component="div">
-                {userName}
+                {name}
             </Typography>
         </Box>
         <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>
-            {reviewText}
+            <span dangerouslySetInnerHTML={{ __html: review }} />
         </Typography>
         <Rating value={rating} readOnly precision={0.5} />
     </Box>
