@@ -1,5 +1,5 @@
 import { Typography, Box } from '@mui/material'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
 import { fetchData } from '../../services/HomePageService'
 import { useViewCounter } from './ViewContextProvider'

@@ -11,31 +11,28 @@ const InquiryForm = ({ trip }) => {
         numberOfPeople: '',
         message: '',
     }
-    
+
     const [errorMessage, setErrorMessage] = useState({})
     const [formData, setFormData] = useState(initialFormData)
 
     const handleValidation = (validateFormData) => {
         const errors = {}
-        
-        for (let key in validateFormData) {
-            if (key!=='phone' && validateFormData[key].trim() === '') {
-                errors[key] = 'Please enter a value!'
-            }
 
-            else if (
+        for (let key in validateFormData) {
+            if (key !== 'phone' && validateFormData[key].trim() === '') {
+                errors[key] = 'Please enter a value!'
+            } else if (
                 key === 'phone' &&
                 !validateFormData[key].match('[789][0-9]{9}')
             ) {
                 errors[key] = 'Please enter a valid value!'
             }
         }
-        
+
         setErrorMessage(errors)
-        return Object.keys(errors).length === 0;
+        return Object.keys(errors).length === 0
     }
-    
-    
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
