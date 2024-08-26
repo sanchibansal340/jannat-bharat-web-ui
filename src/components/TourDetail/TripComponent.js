@@ -20,6 +20,13 @@ const TripComponent = ({ tripData }) => {
     const theme = useTheme()
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
+    const inquiryFormTripData = {
+        tripName: tripData.title,
+        startDate: tripData.start_date,
+        returnDate: tripData.end_date,
+        groupType: tripData.type_of_group,
+    }
+
     const infoData = {
         duration: tripData.duration,
         startingDate: tripData.start_date,
@@ -148,7 +155,7 @@ const TripComponent = ({ tripData }) => {
                         </Button>
                         <br />
                         <br />
-                        <InquireForm />
+                        <InquireForm trip={inquiryFormTripData} />
                     </Grid>
                 </Grid>
             </Box>

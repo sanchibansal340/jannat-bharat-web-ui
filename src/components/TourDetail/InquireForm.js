@@ -1,30 +1,49 @@
 import React, { useState } from 'react'
 import { Box, Grid, TextField, Button, Typography, Paper } from '@mui/material'
 import DynamicFormIcon from '@mui/icons-material/DynamicForm'
-import { sendMail } from '../../services/TripService'
+import emailjs from 'emailjs-com'
 
-const InquiryForm = () => {
-    const [formData, setFormData] = useState({
+const InquiryForm = ( {trip}) => {
+    const initialFormData = {
         name: '',
         email: '',
         phone: '',
         numberOfPeople: '',
         message: '',
-    })
+    }
+    
+    const [formData, setFormData] = useState(initialFormData)
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const response = sendMail('send-email/', formData)
-            alert(response.data.message)
-        } catch (error) {
-            alert('Failed to send email')
-        }
+        e.preventDefault();
+        let mergedFormData = {...formData, ...trip}
+        console.log(mergedFormData)
+        
+        emailjs
+            .send(
+                process.env.REACT_APP_EMAIL_SERVICE_ID,
+                process.env.REACT_APP_EMAIL_TEMPLATE_ID,
+                mergedFormData,
+                process.env.REACT_APP_EMAIL_USER_ID
+            )
+            .then(
+                (result) => {
+                    console.log(result.text)
+                    alert('Email sent successfully!')
+
+                    setFormData(initialFormData)
+                },
+                (error) => {
+                    console.log(error.text)
+                    alert('Failed to send email. Please try again.')
+                }
+            )
     }
+
     return (
         <Box
             sx={{
@@ -86,6 +105,7 @@ const InquiryForm = () => {
                                     type="tel"
                                     required
                                     name="phone"
+                                    inputProps={{ pattern: '^(?:\+91|91)?[\s-]?(?:[789]\d{9}|\(?\d{2,5}\)?[\s-]?\d{10})$'}}
                                     value={formData.phone}
                                     onChange={handleChange}
                                 />
