@@ -11,18 +11,43 @@ const InquiryForm = ({ trip }) => {
         numberOfPeople: '',
         message: '',
     }
-    // const [error, setError] = useState(false)
+    
+    const [errorMessage, setErrorMessage] = useState({})
     const [formData, setFormData] = useState(initialFormData)
 
+    const handleValidation = (validateFormData) => {
+        const errors = {}
+        
+        for (let key in validateFormData) {
+            if (key!=='phone' && validateFormData[key].trim() === '') {
+                errors[key] = 'Please enter a value!'
+            }
+
+            else if (
+                key === 'phone' &&
+                !validateFormData[key].match('[789][0-9]{9}')
+            ) {
+                errors[key] = 'Please enter a valid value!'
+            }
+        }
+        
+        setErrorMessage(errors)
+        return Object.keys(errors).length === 0;
+    }
+    
+    
     const handleChange = (e) => {
-        // handleValidation()
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if (!handleValidation(formData)) {
+            return
+        }
+
         let mergedFormData = { ...formData, ...trip }
-        console.log(mergedFormData)
 
         emailjs
             .send(
@@ -84,6 +109,8 @@ const InquiryForm = ({ trip }) => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
+                                    error={errorMessage['name']}
+                                    helperText={errorMessage['name']}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
@@ -96,6 +123,8 @@ const InquiryForm = ({ trip }) => {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
+                                    error={errorMessage['email']}
+                                    helperText={errorMessage['email']}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
@@ -106,15 +135,10 @@ const InquiryForm = ({ trip }) => {
                                     type="tel"
                                     required
                                     name="phone"
-                                    // inputProps={{ pattern: '[789][0-9]{9}'}}
-                                    error={!formData.phone.match('[789][0-9]{9}')}
-                                    helperText={
-                                        !formData.phone.match('[789][0-9]{9}')
-                                            ? 'Please enter a valid value!'
-                                            : ''
-                                    }
                                     value={formData.phone}
                                     onChange={handleChange}
+                                    error={errorMessage['phone']}
+                                    helperText={errorMessage['phone']}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
@@ -127,6 +151,8 @@ const InquiryForm = ({ trip }) => {
                                     name="numberOfPeople"
                                     value={formData.numberOfPeople}
                                     onChange={handleChange}
+                                    error={errorMessage['numberOfPeople']}
+                                    helperText={errorMessage['numberOfPeople']}
                                 />
                             </Box>
                             <Box sx={{ mb: 2 }}>
@@ -140,6 +166,8 @@ const InquiryForm = ({ trip }) => {
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
+                                    error={errorMessage['message']}
+                                    helperText={errorMessage['message']}
                                 />
                             </Box>
                             <Button
