@@ -3,7 +3,7 @@ import { Box, Grid, TextField, Button, Typography, Paper } from '@mui/material'
 import DynamicFormIcon from '@mui/icons-material/DynamicForm'
 import emailjs from 'emailjs-com'
 
-const InquiryForm = ( {trip}) => {
+const InquiryForm = ({ trip }) => {
     const initialFormData = {
         name: '',
         email: '',
@@ -11,18 +11,19 @@ const InquiryForm = ( {trip}) => {
         numberOfPeople: '',
         message: '',
     }
-    
+    // const [error, setError] = useState(false)
     const [formData, setFormData] = useState(initialFormData)
 
     const handleChange = (e) => {
+        // handleValidation()
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        let mergedFormData = {...formData, ...trip}
+        e.preventDefault()
+        let mergedFormData = { ...formData, ...trip }
         console.log(mergedFormData)
-        
+
         emailjs
             .send(
                 process.env.REACT_APP_EMAIL_SERVICE_ID,
@@ -105,7 +106,13 @@ const InquiryForm = ( {trip}) => {
                                     type="tel"
                                     required
                                     name="phone"
-                                    inputProps={{ pattern: '^(?:\+91|91)?[\s-]?(?:[789]\d{9}|\(?\d{2,5}\)?[\s-]?\d{10})$'}}
+                                    // inputProps={{ pattern: '[789][0-9]{9}'}}
+                                    error={!formData.phone.match('[789][0-9]{9}')}
+                                    helperText={
+                                        !formData.phone.match('[789][0-9]{9}')
+                                            ? 'Please enter a valid value!'
+                                            : ''
+                                    }
                                     value={formData.phone}
                                     onChange={handleChange}
                                 />
