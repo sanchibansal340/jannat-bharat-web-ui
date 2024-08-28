@@ -13,14 +13,6 @@ const tableDataHeading = {
 }
 
 const getTableRowData = (pickupDetails) => {
-    if (pickupDetails.per_person_price !== null) {
-        return {
-            0: {
-                sharingType: 'PerPerson',
-                price: pickupDetails.per_person_price,
-            },
-        }
-    }
     return {
         0: {
             sharingType: 'Quad Sharing',
@@ -33,6 +25,10 @@ const getTableRowData = (pickupDetails) => {
         2: {
             sharingType: 'Double Sharing',
             price: pickupDetails.double_sharing_price,
+        },
+        3: {
+            sharingType: 'Single/Per_Person Price',
+            price: pickupDetails.single_price,
         },
     }
 }
