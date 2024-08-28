@@ -1,18 +1,18 @@
 {
-    "files": {
-        "main.css": "/static/css/main.3f56a2e3.css",
-        "main.js": "/static/js/main.84a3a617.js",
-        "static/js/453.5b44704b.chunk.js": "/static/js/453.5b44704b.chunk.js",
-        "static/media/forest.jpg": "/static/media/forest.0b106ac00941ce15b18e.jpg",
-        "static/media/sea.png": "/static/media/sea.80c99b7f856ad07f7f18.png",
-        "static/media/compass.svg": "/static/media/compass.d8735e2db16550ebc085758d69c809e4.svg",
-        "index.html": "/index.html",
-        "main.3f56a2e3.css.map": "/static/css/main.3f56a2e3.css.map",
-        "main.84a3a617.js.map": "/static/js/main.84a3a617.js.map",
-        "453.5b44704b.chunk.js.map": "/static/js/453.5b44704b.chunk.js.map"
-    },
-    "entrypoints": [
-        "static/css/main.3f56a2e3.css",
-        "static/js/main.84a3a617.js"
-    ]
+  "files": {
+    "main.css": "/static/css/main.dc345d7c.css",
+    "main.js": "/static/js/main.31278b1d.js",
+    "static/js/453.5b44704b.chunk.js": "/static/js/453.5b44704b.chunk.js",
+    "static/media/forest.jpg": "/static/media/forest.0b106ac00941ce15b18e.jpg",
+    "static/media/sea.png": "/static/media/sea.80c99b7f856ad07f7f18.png",
+    "index.html": "/index.html",
+    "static/media/compass.svg": "/static/media/compass.d8735e2db16550ebc085758d69c809e4.svg",
+    "main.dc345d7c.css.map": "/static/css/main.dc345d7c.css.map",
+    "main.31278b1d.js.map": "/static/js/main.31278b1d.js.map",
+    "453.5b44704b.chunk.js.map": "/static/js/453.5b44704b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc345d7c.css",
+    "static/js/main.31278b1d.js"
+  ]
 }
