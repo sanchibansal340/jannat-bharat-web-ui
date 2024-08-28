@@ -27,7 +27,7 @@ const getTableRowData = (pickupDetails) => {
             price: pickupDetails.double_sharing_price,
         },
         3: {
-            sharingType: 'Single/Per_Person Price',
+            sharingType: 'Single Sharing',
             price: pickupDetails.single_price,
         },
     }
