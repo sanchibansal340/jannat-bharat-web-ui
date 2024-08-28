@@ -5,8 +5,6 @@ import TourDetail from '../pages/tourDetail.js'
 import { isNullOrUndefinedOrBlank } from '../helper/utils.js'
 
 const mapStateToProps = (state) => {
-    console.log('State in mapStateToProps:', state)
-
     const masterTripData = state.masterData.tripData
     const tripData = isNullOrUndefinedOrBlank(masterTripData)
         ? null
@@ -18,7 +16,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     getTripDetail: (tripId) => {
-        console.log('Dispatching fetchTripDetail with tripId:', tripId)
         return fetchTripDetail(tripId)
     },
 }

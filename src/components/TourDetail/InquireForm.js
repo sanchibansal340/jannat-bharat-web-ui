@@ -55,9 +55,7 @@ const InquiryForm = ({ trip }) => {
             )
             .then(
                 (result) => {
-                    console.log(result.text)
                     alert('Email sent successfully!')
-
                     setFormData(initialFormData)
                 },
                 (error) => {

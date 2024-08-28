@@ -12,7 +12,6 @@ const ViewCounter = () => {
             try {
                 const response = await fetchData('visit/')
                 if (response.count <= 10000) {
-                    console.log('Fetched count:', response.count) // Log the fetched count
                     setCount(response.count)
                 }
             } catch (error) {
