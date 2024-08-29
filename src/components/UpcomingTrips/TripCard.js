@@ -20,7 +20,6 @@ const TripCard = ({ trip }) => {
         starting_from_price,
     } = trip
     const [isHovering, setIsHovering] = useState(false)
-    const price = trip['pickupDetails'][0]['quad_sharing_price']
 
     return (
         <Grid item xs={12} sm={6} md={3}>
@@ -80,7 +79,7 @@ const TripCard = ({ trip }) => {
                             {title} | {type_of_group}
                         </Typography>
                         <Typography variant="body1" color="secondary.main">
-                            {price !== 0
+                            {starting_from_price !== 0
                                 ? `Starting from ₹${starting_from_price}`
                                 : 'Sold out!'}
                         </Typography>
