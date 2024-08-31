@@ -9,22 +9,21 @@ const TourDetail = ({ tripData, getTripDetail }) => {
     const { startLoading, stopLoading } = useLoading()
 
     useEffect(() => {
-        if (tripData === null) {
-            const fetchTrip = async () => {
-                startLoading()
-                try {
-                    getTripDetail(tripId)
-                } catch (error) {
-                    console.error(error)
-                } finally {
-                    setTimeout(() => {
-                        stopLoading()
-                    }, 500)
-                }
+        const fetchTrip = async () => {
+            startLoading()
+            try {
+                getTripDetail(tripId)
+            } catch (error) {
+                console.error(error)
+            } finally {
+                setTimeout(() => {
+                    stopLoading()
+                }, 500)
             }
-            fetchTrip()
         }
-    }, [])
+        fetchTrip()
+
+    }, [tripId])
 
     return tripData !== null && <TripComponent tripData={tripData} />
 }
